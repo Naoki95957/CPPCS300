@@ -1,6 +1,6 @@
 #include <iostream>
 #include <iomanip>
-#include "Lists/LinkedList.cpp"
+#include "Lists/LinkedList.hpp"
 #include "Objects/Option.cpp"
 #include "Objects/Song.cpp"
 
