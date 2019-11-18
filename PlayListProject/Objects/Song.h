@@ -3,6 +3,8 @@
 //Date      :   10/02/2019
 //Desc      :   Song object to simplify some code via name/artist/length
 #include <string>
+#ifndef Song_H
+#define Song_H
 
 ///A song object to hold a song name, artist name, and duration of song in seconds
 class Song
@@ -33,3 +35,6 @@ class Song
         ///prints the song
         friend std::ostream& operator<<(std::ostream& out, const Song& song);
 };
+
+#include "Song.cpp"
+#endif

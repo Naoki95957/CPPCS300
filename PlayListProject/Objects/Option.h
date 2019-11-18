@@ -4,6 +4,8 @@
 //Desc      :   Option object to simplify some code
 #include <iostream>
 #include <string>
+#ifndef Option_H
+#define Option_H
 
 ///An option object that takes refrence to a function and gives it a name and trigger
 class Option
@@ -32,3 +34,5 @@ class Option
         ///prints the option
         friend std::ostream& operator<<(std::ostream& out, const Option& option);
 };
+#include "Option.cpp"
+#endif

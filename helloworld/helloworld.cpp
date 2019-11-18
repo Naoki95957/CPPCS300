@@ -3,6 +3,7 @@
 #include "part1.cpp"
 #include "part2.cpp"
 #include "part3.cpp"
+#include "my_class.hpp"
 
 void forfun();
 void basicPointers();
@@ -10,8 +11,8 @@ void pointerNonsense();
 
 int main()
 {   
-    pointerNonsense();
-
+    N::my_class mc;
+    mc.do_something();
     return 0;
 }
 

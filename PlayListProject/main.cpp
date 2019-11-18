@@ -1,8 +1,8 @@
 #include <iostream>
 #include <iomanip>
 #include "Lists/LinkedList.hpp"
-#include "Objects/Option.cpp"
-#include "Objects/Song.cpp"
+#include "Objects/Option.h"
+#include "Objects/Song.h"
 
 ///responsible for keeping the appilcation going
 bool applicationRunning = true;
@@ -201,7 +201,6 @@ void initOptions()
     };
     auto playNextSongFn = []()
     {
-        lineBreak();
         if((!songs.isEmpty()) && pCurrentlyPlayingSong == nullptr)
         {
             pCurrentlyPlayingSong = songs.getFrontNode();
