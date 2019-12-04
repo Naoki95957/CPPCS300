@@ -28,7 +28,6 @@ class BinarySearchTree{
         treenode<T> *root;
     public: 
         //public interface: functions available to outside
-
         BinarySearchTree();
         BinarySearchTree(const BinarySearchTree& tree);
         BinarySearchTree& operator=(BinarySearchTree *ptr);
@@ -36,6 +35,8 @@ class BinarySearchTree{
         void insert(T& item);
         bool search(T& item);
         void remove(T& item);
+        bool isBST();
+        bool isBST2();
         T max();
         T min();
         int height();
@@ -51,6 +52,8 @@ class BinarySearchTree{
         void tree_remove(treenode<T>*&, T&);
         T tree_max(treenode<T>*);
         T tree_min(treenode<T>*);
+        bool isBST_helper(treenode<T>* p);
+        bool isBST2_helper(treenode<T>* p, treenode<T>* prev);
         int findMax(int , int);
         int tree_height(treenode<T>*);
         void tree_printInOrder(treenode<T>*);
@@ -59,6 +62,53 @@ class BinarySearchTree{
         void destroy(treenode<T>*&);
 
 };
+
+template <typename T>
+bool BinarySearchTree<T>::isBST()
+{
+    return isBST_helper(root);
+}
+
+template <typename T>
+bool BinarySearchTree<T>::isBST2()
+{   
+    return isBST2_helper(root, NULL);
+}
+
+template <typename T>
+bool BinarySearchTree<T>::isBST_helper(treenode<T>* p)
+{
+    if(p==NULL)
+        return true;
+    else if(p->left != NULL && tree_max(p->left) > p->data)
+        return false;
+    else if(p->right != NULL && tree_min(p->right) < p->data)
+        return false;
+    else
+        return isBST_helper(p->left) && isBST_helper(p->right);
+}
+
+
+
+template <typename T>
+bool BinarySearchTree<T>::isBST2_helper(treenode<T>* p, treenode<T>* prev)
+{
+    if(p == NULL)
+    {
+        return true;
+    }
+    else
+    {
+        if (isBST2_helper(p->left, prev))
+        {
+            if (prev == NULL || prev->data < p->data)
+            { 
+                return isBST2_helper(p->right, p); 
+            }
+        }
+        return false;
+    }
+}
 
 //constructor for Binary Search Tree
 //creates and empy tree (root = NULL) 
@@ -199,7 +249,8 @@ T BinarySearchTree<T>::max(){
 
 //finds and returns the maximum key in the tree
 template <class T>
-T BinarySearchTree<T>::tree_max(treenode<T> * p){
+T BinarySearchTree<T>::tree_max(treenode<T> * p)
+{
     if(p != NULL){
         if(p->right==NULL)
             return p->data;
@@ -222,7 +273,8 @@ T BinarySearchTree<T>::min(){
 
 //finds and returns the minimum key in the tree
 template <class T>
-T BinarySearchTree<T>::tree_min(treenode<T> * p){
+T BinarySearchTree<T>::tree_min(treenode<T> * p)
+{
     if(p != NULL){
         if(p->left==NULL)
             return p->data;

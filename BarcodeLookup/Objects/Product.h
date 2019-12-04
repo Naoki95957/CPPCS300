@@ -1,5 +1,13 @@
-#include <String>
+/**
+ *  Naoki Lucas
+ *  Nov. 17th 2019
+ *  Product object for use with Grocery_UPC_Database.csv
+ * */
 
+#include <String>
+//Technically I shouldve made a cpp file but the functions
+//(which honestly don't do much or have much definition) 
+//were so small, I left them in here:
 class Product
 {   
     bool mockProduct = false;
@@ -15,8 +23,7 @@ class Product
     public:
         Product(std::string upc_12 = "", std::string upc_14 = "", std::string brand = "", 
             std::string name = "", bool mockProduct = false)
-        :upc_12(upc_12), upc_14(upc_14), brand(brand), name(name), 
-            mockProduct(mockProduct)
+        :upc_12(upc_12), upc_14(upc_14), brand(brand), name(name), mockProduct(mockProduct)
         {}
 
         void setUpc12(std::string new_upc_12)
@@ -29,7 +36,7 @@ class Product
             return name;
         }
 
-        //This particular function is where I get crafty by sorta making this an assignment operation
+        //This particular function is where I get crafty by making this also an assignment operation
         void copyOver(Product & p)
         {
             if(mockProduct)
@@ -42,8 +49,10 @@ class Product
         //comparing just the GS1, GTIN standard (this then relies on the UPC-12 being unique)
         bool operator==(Product & p)
         {   
-            copyOver(p);
-            return (std::stoull(upc_12) == std::stoull(p.upc_12));
+            bool test = (std::stoull(upc_12) == std::stoull(p.upc_12));
+            if(test)
+                copyOver(p);
+            return test;
         }
 
         bool operator<(Product & p)
