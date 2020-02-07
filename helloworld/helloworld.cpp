@@ -8,11 +8,18 @@
 void forfun();
 void basicPointers();
 void pointerNonsense();
+void bitwise()
+{
+    //typecast hackery to bitwise on a float...
+    float a = 0;
+    int* p = (int*)&a;
+    *p = 1 << (1, 8);
+    std::cout << a << std::endl;
+}
 
 int main()
 {   
-    N::my_class mc;
-    mc.do_something();
+
     return 0;
 }
 
